@@ -1,0 +1,8 @@
+<app-categorie-component [categorie] = categorie (selectedCategoria)=select($event)></app-categorie-component>
+<div class="wrapper">
+  <div class="item1">
+    <app-raccolta-articoli-component [articoli] = articoli></app-raccolta-articoli-component>  </div>
+  <div class="item2">
+    <app-articoli-principali-component [articoliPrincipali] = articoliPrincipali (metodoVisualizzazione)= selectTipoVisualizzazione($event) ></app-articoli-principali-component>
+  </div>
+</div>

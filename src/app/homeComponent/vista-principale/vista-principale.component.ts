@@ -1,18 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { homeServiceI } from './servizi/HomeService/homeServiceI';
-import { Categoria } from './supportedService/categoria';
-import { Articolo } from './supportedService/articolo';
-import { HomeMockupServiceService } from './servizi/HomeService/home-mockup-service.service';
-import {MatCardModule} from '@angular/material/card';
-
+import { Categoria } from 'src/app/supportedService/categoria';
+import { HomeMockupServiceService } from 'src/app/servizi/HomeService/home-mockup-service.service';
+import { Articolo } from 'src/app/supportedService/articolo';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './vista-principale.component.html',
+  styleUrls: ['./vista-principale.component.css']
 })
-export class AppComponent implements OnInit {
-  title = 'Giornale';
+export class VistaPrincipaleComponent implements OnInit {
 
   //sono gli articoli selezionati in base alla categoria
   articoli : Articolo[];
@@ -30,18 +25,23 @@ export class AppComponent implements OnInit {
 
 
   constructor(private servizioHome: HomeMockupServiceService){
+    //imposto un valore di defoult alla categoria presa
+    this.getCategorie();
+    this.selected = this.categorie[0];
 
   }
 
-  ngOnChange(){
+  ngOnChange(): void{
+    this.getCategorie();
 
   }
 
   ngOnInit(): void{
+    console.log("caricato");
     this.getCategorie();
     this.getArticoliPrincipali(this.ordinamentoPrincipali);
 
-    //this.getArticoliPerCategoria(this.selected);
+    this.getArticoliPerCategoria(this.selected);
     //al memento li faccio restiruire per date
 
 
@@ -51,11 +51,9 @@ export class AppComponent implements OnInit {
     this.servizioHome.getCategorie().subscribe(categories => this.categorie = categories);
   }
 
-
   getArticoliPerCategoria(selected: Categoria){
     this.servizioHome.getArticoliPerCategoria(selected.id).subscribe(articolis => this.articoli = articolis);
   }
-
 
   getArticoliPrincipali(ordinamento : boolean): void{
     //true == ordinati per data, false = ordinati per like
@@ -79,7 +77,6 @@ export class AppComponent implements OnInit {
     this.ordinamentoPrincipali = vis;
     console.log("scelto ordinamento :" + vis);
   }
-
 
 
 }

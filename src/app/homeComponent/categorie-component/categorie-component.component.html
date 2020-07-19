@@ -1,0 +1,16 @@
+<hr  width = "100%" align="center" noshade size="1" color="black">
+
+<table style="width:100%" border=0 cellspacing=5 cellpadding=4>
+<td *ngFor="let c of categorie">
+  <app-categoria-item [categoria]=c (selected)='selectCategoria($event)'>
+
+  </app-categoria-item>
+
+
+
+
+</td>
+
+</table>
+
+<hr  width = "100%" align="center" noshade size="1" color="black">

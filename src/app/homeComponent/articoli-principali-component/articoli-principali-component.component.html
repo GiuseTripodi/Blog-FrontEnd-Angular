@@ -1,0 +1,14 @@
+<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu" xPosition="after" yPosition="above">
+  <button mat-menu-item (click)=select(true)>Ordina per data</button>
+  <button mat-menu-item (click)=select(false)>Ordina per popolarità</button>
+</mat-menu>
+
+<h6 *ngFor="let a of articoliPrincipali">
+  <app-articolo-item [art] = a (articoloSelezionato)=selezionatoArticolo($event)>
+
+  </app-articolo-item>
+
+</h6>
+
+
