@@ -1,0 +1,67 @@
+.formatText{
+
+  margin-top: 1cm;
+  margin-bottom: 1em;
+  margin-left: 7cm;
+  margin-right: 7cm;
+}
+
+.titolo{
+  text-emphasis: 1;
+  text-decoration-style: dashed;
+  font-style: italic;
+}
+
+
+.colDislike{
+  color:white;
+  background-color:black;
+  font-style: initial;
+  margin-right: 0cm;
+
+
+}
+
+.colLike{
+  color:white;
+  background-color:black;
+  font-style: initial;
+  margin-right: 1cm;
+
+
+}
+
+#block
+{
+    display: grid;
+
+}
+.categoria
+{
+  grid-column: 1 ;}
+
+.data
+{
+  grid-column: 2 ;}
+
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+
+.wrapper {
+  margin: 0 auto;
+  width: 960px;
+}
+
+.columnl {
+     float: left;
+     width: 33%;
+}
+
+.columnr {
+  float: right;
+  width: 33%;
+}

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output ,EventEmitter} from '@angular/core';
-import { Categoria } from 'src/app/supportedService/categoria';
 
 @Component({
   selector: 'app-categorie-component',
@@ -8,16 +7,23 @@ import { Categoria } from 'src/app/supportedService/categoria';
 })
 export class CategorieComponentComponent implements OnInit {
 
-  @Input() categorie: Categoria[];
-  @Output() selectedCategoria = new EventEmitter<Categoria>();
+  @Input() categorie: String[];
+  @Output() selectedCategoria = new EventEmitter<String>();
 
-  constructor() { }
+
+  //indice della categoria selezionata, valore di defoult
+  selIndex : String = "musica";
+
+  constructor() {
+
+   }
 
   ngOnInit(): void {
   }
 
-  selectCategoria(cat: Categoria){
+  selectCategoria(cat: String){
     this.selectedCategoria.emit(cat);
+    this.selIndex = cat;
     console.log("trasmesso ad un livello ancora superiore");
   }
 

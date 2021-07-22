@@ -1,1 +1,19 @@
+.titolo{
+  font: italic 3.5em "Fira Sans", serif;
+  color: white;
+  width: auto;
+  height: 60px;
+  background-image: image("assets/img/im.jpg");
+  background-image: element("assets/img/im.jpg");
+  background-image: initial;
 
+
+}
+
+.linea{
+  background:black;
+  width: auto;
+  height: 5px;
+
+
+}

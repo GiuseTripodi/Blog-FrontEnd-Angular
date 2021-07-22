@@ -1,4 +1,7 @@
-<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<div class="lista">
+<button class="button" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
 <mat-menu #menu="matMenu" xPosition="after" yPosition="above">
   <button mat-menu-item (click)=select(true)>Ordina per data</button>
   <button mat-menu-item (click)=select(false)>Ordina per popolarità</button>
@@ -12,3 +15,4 @@
 </h6>
 
 
+</div>

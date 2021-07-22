@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Categoria } from 'src/app/supportedService/categoria';
 
 @Component({
   selector: 'app-categoria-item',
@@ -8,8 +7,8 @@ import { Categoria } from 'src/app/supportedService/categoria';
 })
 export class CategoriaItemComponent implements OnInit {
 
-  @Input() categoria : Categoria;
-  @Output() selected = new EventEmitter<Categoria>();
+  @Input() categoria : String;
+  @Output() selected = new EventEmitter<String>();
 
 
   constructor() { }

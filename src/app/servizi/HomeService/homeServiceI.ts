@@ -1,19 +1,26 @@
 import { Observable } from 'rxjs';
-import { Categoria } from 'src/app/supportedService/categoria';
 import {Articolo} from "src/app/supportedService/articolo";
 
 export interface homeServiceI{
 
 
-  getArticoliPerCategoria(idCategoria: number) : Observable<Articolo[]>;
+  getArticoliPerCategoria(nomeCategoria: String) : Observable<Articolo[]>;
 
-  getCategorie(): Observable<Categoria[]>;
+  getCategorie(): Observable<String[]>;
 
   getArticoliPiuLike(): Observable<Articolo[]>;
 
   getArticoliPiuRecenti(): Observable<Articolo[]>;
 
   getArticolo(articoloID : number): Observable<Articolo>;
+
+
+  addLikeAdArticolo(articoloID: number): void;
+
+  addDislikeAdArticolo(articoloID: number): void;
+
+  addArticolo(art : Articolo);
+
 
 
 }//homeServiceI

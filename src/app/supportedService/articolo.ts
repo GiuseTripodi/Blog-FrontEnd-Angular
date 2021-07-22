@@ -1,28 +1,50 @@
-import { Categoria } from './categoria';
 
 export class Articolo {
 
-  id:number;
-  titolo: string;
-  testo: string;
-  date: Date;
-  autore: string;
-  numeroLike: number;
-  numeroDislike: number;
+//generali
+  id: number;
+  time: Date;
+  author: string;
+  title: string;
+  text: string;
 
-  categoria: Categoria;
+//informazioni sui like
+  numDislike: number;
+  numLike: number;
 
-  constructor(id:number,titolo: string,testo: string,date: Date,autore: string,numeroLike: number,numeroDislike: number,categoria: Categoria){
-    this.id = id;
-    this.titolo = titolo;
-    this.testo = testo;
-    this.date = date;
-    this.autore = autore;
-    this.numeroDislike = numeroDislike;
-    this.numeroLike = numeroLike;
-    this.categoria = categoria;
+  //categoria
+  musica: number;
+  filosofia: number;
+  politica: number;
+  scienza: number;
+  storia: number;
+  giochi: number;
+  libri: number;
+  cibo: number;
+  internet: number;
+  economia: number;
+  medicina: number;
+  scuola: number;
+  legge: number;
+  datasource: number;
 
-    }
+
+  static create(x : Object): Articolo{
+
+    const a = new Articolo();
+    Object.keys(x).forEach(key =>{
+      a[key] = x[key];
+    });
+    console.log(a);
+    return a;
+  }
+
+
+
+
+
+
+
 
 
 }

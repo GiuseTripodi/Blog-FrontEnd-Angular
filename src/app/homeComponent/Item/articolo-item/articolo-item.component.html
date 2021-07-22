@@ -1,11 +1,11 @@
 
-<mat-card (click) = selezionatoArticolo()  >
+<mat-card  class="card" (click) = selezionatoArticolo()  >
   <mat-card-title>
-    <h1>{{art.titolo}}</h1>
+    <h1 style="font-family:verdana;" >{{art.title | troncaTesto}}</h1>
   </mat-card-title>
-  <mat-card-subtitle> {{art.autore}}</mat-card-subtitle>
+  <mat-card-subtitle> {{art.author}}</mat-card-subtitle>
   <mat-card-content>
-    {{art.testo}}
+    {{art.text | troncaTesto}}
   </mat-card-content>
 </mat-card>
 

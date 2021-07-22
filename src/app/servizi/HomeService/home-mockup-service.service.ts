@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { homeServiceI } from './homeServiceI';
 import { Articolo } from 'src/app/supportedService/articolo';
-import { Categoria } from 'src/app/supportedService/categoria';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -11,42 +10,76 @@ export class HomeMockupServiceService implements homeServiceI{
 
   articoli: Articolo[];
 
-  categorie: Categoria[];
+  categorie: String[];
 
   constructor() {
     //inizializzo le due strutture
-    this.categorie = [
-      new Categoria(0,"Categoria 1",  this.articoli),
-      new Categoria(1,"Categoria 2",this.articoli),
-      new Categoria(3, "Categoria 3", this.articoli)
+    this.categorie = ["Economia","Categoria 1","Categoria 2"
     ];
 
 
     this.articoli = [
-      {id:0, titolo: "Titoolo 1",testo: "testo 1",
-        date: new Date(2020, 30, 3), autore: "luca",
-        numeroLike: 9, numeroDislike: 0,
+      {id:0, title: "Titoolo 1",text: "testo 1",
+        time: new Date(2020, 30, 3), author: "luca",
+        numLike: 9, numDislike: 0,
 
-        categoria: this.categorie[0]
+        musica: 0,
+        filosofia: 0,
+        politica: 0,
+        scienza: 0,
+        storia: 0,
+        giochi: 0,
+        libri:0,
+        cibo: 1,
+        internet:0,
+        economia: 0,
+        medicina:0,
+        scuola: 0,
+        legge: 0,
+        datasource: 0
       },
-      {id:1, titolo: "Titoolo 2",testo: "testo 2",
-        date: new Date(2020, 21, 6), autore: "Marco",
-        numeroLike: 3, numeroDislike: 34,
 
-        categoria: this.categorie[1]
+      {id:1, title: "Titoolo 2",text: "testo 2",
+        time: new Date(2020, 15, 3), author: "mimmo",
+        numLike: 99, numDislike: 100,
+
+        musica: 1,
+        filosofia: 0,
+        politica: 0,
+        scienza: 0,
+        storia: 0,
+        giochi: 0,
+        libri:0,
+        cibo: 0,
+        internet:0,
+        economia: 0,
+        medicina:0,
+        scuola: 0,
+        legge: 0,
+        datasource: 0
       },
-      {id:2, titolo: "Titoolo 3",testo: "testo 3",
-        date: new Date(2011, 21, 9), autore: "Marco",
-        numeroLike: 2, numeroDislike: 41,
+      {id:2, title: "Titoolo 3",text: "testo 3",
+        time: new Date(2020, 8, 3), author: "carla",
+        numLike: 19, numDislike: 10,
 
-        categoria: this.categorie[1]
-      }
+        musica: 0,
+        filosofia: 1,
+        politica: 0,
+        scienza: 0,
+        storia: 0,
+        giochi: 0,
+        libri:0,
+        cibo: 0,
+        internet:0,
+        economia: 0,
+        medicina:0,
+
+        scuola: 0,
+        legge: 0,
+        datasource: 0
+      },
 
     ];
-
-    this.categorie[0].setArticoli(this.articoli);
-    this.categorie[1].setArticoli(this.articoli);
-    this.categorie[2].setArticoli(this.articoli);
 
 
 
@@ -55,10 +88,10 @@ export class HomeMockupServiceService implements homeServiceI{
 
   }//constructor
 
-  getArticoliPerCategoria(idCategoria: number): Observable<Articolo[]> {
-    return of(this.categorie[idCategoria].getArticoli());
+  getArticoliPerCategoria(nomeCategoria: String): Observable<Articolo[]> {
+    return of(this.articoli);
   }
-  getCategorie(): Observable<Categoria[]> {
+  getCategorie(): Observable<String[]> {
     return of(this.categorie);
   }
   getArticoliPiuLike(): Observable<Articolo[]> {
@@ -74,6 +107,30 @@ export class HomeMockupServiceService implements homeServiceI{
     console.log('Artid:'+articoloID+'articolo'+this.articoli.find(art => art.id == articoloID));
     return of(this.articoli.find(art => art.id == articoloID ));
 
+  }
+
+  //funzioni per aggiungere like
+  addLikeAdArticolo(articoloID : number): void{
+    this.articoli.find(art => art.id == articoloID).numLike++;
+
+  }
+
+  removeLikeAdArticolo(articoloID : number): void{
+    this.articoli.find(art => art.id == articoloID).numLike--;
+
+  }
+
+  //funzione per trattare con i dislike
+  addDislikeAdArticolo(articoloID : number){
+    this.articoli.find(art => art.id == articoloID).numDislike--;
+  }
+  removeDislikeAdArticolo(articoloID : number){
+    this.articoli.find(art => art.id == articoloID ).numDislike--;
+  }
+
+  addArticolo(art : Articolo) : Observable<any>{
+    this.articoli.push(art);
+    return of(this.articoli);
   }
 
 

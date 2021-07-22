@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Categoria } from 'src/app/supportedService/categoria';
-import { HomeMockupServiceService } from 'src/app/servizi/HomeService/home-mockup-service.service';
+//import { HomeMockupServiceService } from 'src/app/servizi/HomeService/home-mockup-service.service';
 import { Articolo } from 'src/app/supportedService/articolo';
+import { HomeRESTService } from 'src/app/servizi/HomeService/home-rest.service';
 
 @Component({
   templateUrl: './vista-principale.component.html',
@@ -12,10 +12,10 @@ export class VistaPrincipaleComponent implements OnInit {
   //sono gli articoli selezionati in base alla categoria
   articoli : Articolo[];
 
-  categorie : Categoria[];
+  categorie : String[];
 
   //categoria selezionata
-  selected : Categoria;
+  selected : String;
 
   //gestione articoli principali
   articoliPrincipali : Articolo[];
@@ -24,25 +24,26 @@ export class VistaPrincipaleComponent implements OnInit {
   ordinamentoPrincipali : boolean = true;
 
 
-  constructor(private servizioHome: HomeMockupServiceService){
+  //constructor(private servizioHome: HomeMockupServiceService){
+  constructor(private servizioHome: HomeRESTService){
     //imposto un valore di defoult alla categoria presa
-    this.getCategorie();
+  }
+
+  ngOnChange(){
     this.selected = this.categorie[0];
 
+    this.getArticoliPerCategoria(this.selected);
   }
 
-  ngOnChange(): void{
-    this.getCategorie();
-
-  }
 
   ngOnInit(): void{
-    console.log("caricato");
     this.getCategorie();
     this.getArticoliPrincipali(this.ordinamentoPrincipali);
+    this.getArticoliPerCategoriaDefoult();
 
-    this.getArticoliPerCategoria(this.selected);
-    //al memento li faccio restiruire per date
+
+
+
 
 
   }
@@ -51,8 +52,15 @@ export class VistaPrincipaleComponent implements OnInit {
     this.servizioHome.getCategorie().subscribe(categories => this.categorie = categories);
   }
 
-  getArticoliPerCategoria(selected: Categoria){
-    this.servizioHome.getArticoliPerCategoria(selected.id).subscribe(articolis => this.articoli = articolis);
+  getArticoliPerCategoriaDefoult(){
+    //valore di defoult per categoria
+    this.servizioHome.getArticoliPerCategoria("musica").subscribe(articolis => this.articoli = articolis);
+
+  }
+
+  getArticoliPerCategoria(selected: String){
+    console.log(selected);
+    this.servizioHome.getArticoliPerCategoria(selected).subscribe(articolis => this.articoli = articolis);
   }
 
   getArticoliPrincipali(ordinamento : boolean): void{
@@ -66,15 +74,19 @@ export class VistaPrincipaleComponent implements OnInit {
     }
   }
 
-  select(cat: Categoria){
+  select(cat: String){
     this.selected =cat;
-    this.articoli = this.selected.getArticoli();
+    //this.articoli = this.selected.articoli;
+    this.getArticoliPerCategoria(cat);
+
+
     console.log(cat);
 
   }
 
   selectTipoVisualizzazione(vis : boolean){
     this.ordinamentoPrincipali = vis;
+    this.getArticoliPrincipali(vis);
     console.log("scelto ordinamento :" + vis);
   }
 

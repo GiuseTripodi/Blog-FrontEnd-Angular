@@ -5,12 +5,23 @@
 
 }
 
+.sfondo{
+    height: 200px;
+    width: 1210px;
+
+
+
+
+}
+
 .item1 {
 
   grid-column: 1 ;
   border: groove;
   border-width: 1px;
-  border-right-style: groove;
+  margin-left: 1cm;
+  border-style: none;
+  margin-right: 1em;
 
 
 
@@ -19,4 +30,14 @@
   grid-column: 2;
   border: groove;
   border-width: 1px;
+  margin-right: 1cm;
+  margin-left: 1em;
+  size: 10cm;
+  border-top: 0ch;
+  border-style: none;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+
+
+
 }

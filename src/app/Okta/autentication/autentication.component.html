@@ -1,0 +1,11 @@
+<div class="button-wrapper" class="button"  align="right"class="position">
+<button   class="col" mat-flat-button *ngIf="!isAutenticatedAmm" (click)="loginAmministratore()"> amministratore </button>
+<button   class="col" mat-flat-button *ngIf="isAutenticatedAmm" (click)="logout()"> Logout </button>
+
+<button   class="col" mat-flat-button *ngIf="!isAutenticatedCli" (click)="loginCliente()"> iscritto </button>
+<button   class="col" mat-flat-button *ngIf="isAutenticatedCli" (click)="logout()"> Logout </button>
+
+</div>
+<router-outlet></router-outlet>
+
+
